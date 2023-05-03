@@ -14,6 +14,8 @@ public class ModuleCanvas extends JPanel {
 
     private JPanel testPanel;
     private BombTimer bombTimer;
+    private SimonSays simonsays;
+    private Keypad keypad;
      
 
 
@@ -32,6 +34,11 @@ public class ModuleCanvas extends JPanel {
     public void setUpSwingComponents() {
         bombTimer = new BombTimer(); 
         add(bombTimer);
+        simonsays = new SimonSays();
+        add(simonsays);
+        keypad = new Keypad();
+        add(keypad);
+
         
 
         /* testPanel = new JPanel();
