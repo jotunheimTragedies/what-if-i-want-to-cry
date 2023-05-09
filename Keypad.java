@@ -1,4 +1,4 @@
-package Modules;
+
 
 import java.awt.event.ActionListener;
 import javax.swing.*;
@@ -12,7 +12,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.ButtonModel;
 
 
-public class Keypad extends JPanel implements ActionListener, ChangeListener{
+public class Keypad extends JPanel implements ActionListener, ChangeListener {
 
     public Timer timer;
 

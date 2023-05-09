@@ -1,5 +1,3 @@
-package BasicClasses;
-
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -7,6 +5,7 @@ import java.awt.geom.*;
 import javax.swing.*;
 
 public class GameCanvas extends JComponent implements KeyListener {
+    private int playerID;
     private int width; 
     private int height;
     
@@ -20,14 +19,13 @@ public class GameCanvas extends JComponent implements KeyListener {
 
     // Title Screen 
     private String[] titleOptions = {"Play Game", "Mechanics", "Quit"};
-    private int currentTitleOption = 0; 
+    public int currentTitleOption = 0; 
 
     // Mechanics Screen 
-    private String BackButton = "< Back";
-    private boolean backButtonPressed; 
+    private String backButton = "< Back";
+    private boolean backButtonPressed;
 
-
-    public GameCanvas(int w, int h) {
+    public GameCanvas(int id, int w, int h) {
         width = w; 
         height = h; 
         setPreferredSize(new Dimension(w, h));
@@ -59,7 +57,6 @@ public class GameCanvas extends JComponent implements KeyListener {
 
             g2d.setFont(new Font("Times New Roman", Font.PLAIN, 55));
             g2d.drawString("Ateneo CS Edition", 535, 410);
-            
 
             for(int i = 0; i < titleOptions.length; i++) {
                 if(i == currentTitleOption) {
@@ -67,7 +64,7 @@ public class GameCanvas extends JComponent implements KeyListener {
                 } else {
                     g2d.setColor(Color.white);
                 }
-                
+                    
                 g2d.setFont(new Font("Times New Roman", Font.PLAIN, 50));
                 g2d.drawString(titleOptions[i], 620, 520 + i*90);
             }
@@ -78,13 +75,14 @@ public class GameCanvas extends JComponent implements KeyListener {
             if(backButtonPressed == false) {
                 g2d.setFont(new Font("Times New Roman", Font.PLAIN, 35));
                 g2d.setPaint(Color.white);
-                g2d.drawString(BackButton, 40, 50);
+                g2d.drawString(backButton, 40, 50);
+            
             } else if(backButtonPressed == true) {
                 g2d.setFont(new Font("Times New Roman", Font.PLAIN, 35));
                 g2d.setPaint(Color.red);
-                g2d.drawString(BackButton, 40, 50);
+                g2d.drawString(backButton, 40, 50);
             }
-            
+                
             g2d.setFont(new Font("Times New Roman", Font.BOLD, 75));
             g2d.setPaint(Color.white);
             g2d.drawString("Mechanics", 560, 110);
@@ -109,12 +107,10 @@ public class GameCanvas extends JComponent implements KeyListener {
         }
 
     }
-
-    
+ 
     public int getCurrentState() {
         return gameState;
     }
-
 
 // https://www.youtube.com/watch?v=BJ7fr9XwS2o
 // https://www.youtube.com/watch?v=2ibxoX0E6AY
@@ -143,12 +139,11 @@ public class GameCanvas extends JComponent implements KeyListener {
                     currentTitleOption = titleOptions.length-1; 
                     repaint();
                 }
-                
     
             } else if(getKeyPressed == KeyEvent.VK_ENTER) {
                 if(currentTitleOption == 0) {
                     gameState = runningState; 
-                    repaint();
+                    //repaint();
                 } else if(currentTitleOption == 1) {
                     gameState = howPlayState;
                     repaint();
@@ -165,6 +160,8 @@ public class GameCanvas extends JComponent implements KeyListener {
                 gameState = titleState;
                 repaint();
             }
+        } else if(gameState == runningState) {
+            
         }
     }
 
@@ -172,5 +169,4 @@ public class GameCanvas extends JComponent implements KeyListener {
     public void keyReleased(KeyEvent e) {
         
     }
-
 }
