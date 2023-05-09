@@ -86,6 +86,8 @@ public class GameFrame {
             }
         }
         setUpOverCanvas();
+        //setUpRunningCanvas();
+
   
     }
 

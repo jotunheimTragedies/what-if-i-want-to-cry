@@ -1,5 +1,3 @@
-
-
 import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.event.ChangeListener;
@@ -12,7 +10,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.ButtonModel;
 
 
-public class Keypad extends JPanel implements ActionListener, ChangeListener {
+public class Keypad extends JPanel implements ActionListener, ChangeListener, ModuleTemplate {
 
     public Timer timer;
 
@@ -143,11 +141,9 @@ public class Keypad extends JPanel implements ActionListener, ChangeListener {
                 
                 if(selectednums.equals(buttonspressed)){
                     System.out.println("win");
+                    solved(true);
                 }else if(buttonspressed.size()==4){
                     start();
-                    System.out.println("restarted");
-                    System.out.println(selectednums);
-                    System.out.println(buttonspressed);
                 }
             
 
@@ -156,7 +152,6 @@ public class Keypad extends JPanel implements ActionListener, ChangeListener {
 		});
 
         selectedcol = randomcol.nextInt(3);
-        //selectedcol = randomcol.ne
 
         if(selectedcol == 0){
             chosencol = column1;
@@ -199,12 +194,9 @@ public class Keypad extends JPanel implements ActionListener, ChangeListener {
         i = 0;
         while(!found){
             if(image1 == chosencol.get(j)){
-                System.out.println("found 1");
                 num1 = j;
                 found = true;
-                //System.out.println(chosencol.indexOf(image1));
             }else{
-                //System.out.println("naur sadly");
                 j++;
             }
         i++;
@@ -214,12 +206,10 @@ public class Keypad extends JPanel implements ActionListener, ChangeListener {
 
         while(!found){
             if(image2 == chosencol.get(a)){
-                System.out.println("found 2");
                 num2 = a;
                 found = true;
-                //System.out.println(chosencol.indexOf(image2));
             }else{
-                //System.out.println("naur sadly");
+
                 a++;
             }
         i++;
@@ -230,12 +220,9 @@ public class Keypad extends JPanel implements ActionListener, ChangeListener {
         i = 0;
         while(!found){
             if(image3 == chosencol.get(b)){
-                System.out.println("found 3");
                 num3 = b;
                 found = true;
-                //System.out.println(chosencol.indexOf(image3));
             }else{
-                //System.out.println("naur sadly");
                 b++;
             }
         i++;
@@ -245,10 +232,8 @@ public class Keypad extends JPanel implements ActionListener, ChangeListener {
 
         while(!found){
             if(image4 == chosencol.get(c)){
-                System.out.println("found 4");
                 num4 = c;
                 found = true;
-                //System.out.println(chosencol.indexOf(image4));
             }else{
                 c++;
             }
@@ -256,15 +241,11 @@ public class Keypad extends JPanel implements ActionListener, ChangeListener {
         }
         num4 = c;
 
-        System.out.println(num1);
-        System.out.println(num2);
-        System.out.println(num3);
-        System.out.println(num4);
         i=0;
         
 
         timer.start();     
-        buttons();
+        setUpSwingComponents();
         backpanel.add(Icon1);
         backpanel.add(Icon2);
         backpanel.add(Icon3);
@@ -276,7 +257,11 @@ public class Keypad extends JPanel implements ActionListener, ChangeListener {
         buttonspressed = new ArrayList<>();
     }
 
-    public void buttons(){
+    public boolean solved(boolean i){
+        return i;
+    }
+
+    public void setUpSwingComponents(){
         Icon1 = new JButton(image1);
         Icon1.addActionListener(new ActionListener(){  
             public void actionPerformed(ActionEvent e){  
@@ -292,8 +277,6 @@ public class Keypad extends JPanel implements ActionListener, ChangeListener {
                 // if the current state differs from the previous state
                 if (model.isPressed() != pressed) { 
                     buttonspressed.add(num1);
-                    
-                    System.out.println(buttonspressed);
                     pressed = model.isPressed();
                     pressed = false;
                 }              
@@ -316,7 +299,6 @@ public class Keypad extends JPanel implements ActionListener, ChangeListener {
                 // if the current state differs from the previous state
                 if (model.isPressed() != pressed) { 
                     buttonspressed.add(num2);
-                    System.out.println(buttonspressed);
                     pressed = model.isPressed();
                     pressed = false;
                     
@@ -339,7 +321,6 @@ public class Keypad extends JPanel implements ActionListener, ChangeListener {
                 // if the current state differs from the previous state
                 if (model.isPressed() != pressed) { 
                     buttonspressed.add(num3);
-                    System.out.println(buttonspressed);
                     pressed = model.isPressed();
                     pressed = false;
                     
@@ -363,15 +344,12 @@ public class Keypad extends JPanel implements ActionListener, ChangeListener {
                 if (model.isPressed() != pressed) { 
 
                     buttonspressed.add(num4);
-                    System.out.println(buttonspressed);
                     pressed = model.isPressed();
                     pressed = false;
                     
                 }              
             }
         });
-    
-    System.out.println(buttonspressed);
 
     }
 
@@ -395,8 +373,6 @@ public class Keypad extends JPanel implements ActionListener, ChangeListener {
 
             // if the current state differs from the previous state
             if (model.isPressed() != pressed) {
-            
-                System.out.println("bruh");
                 pressed = model.isPressed();
             }
 

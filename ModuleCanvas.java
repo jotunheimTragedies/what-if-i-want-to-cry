@@ -8,6 +8,11 @@ public class ModuleCanvas extends JPanel {
 
     private JPanel testPanel;
     private BombTimer bombTimer;
+    private SimonSays ss;
+    private Keypad keypad;
+    private KeypadManual kp;
+    private SimonSaysManual sm;
+    private Filler filler;
      
     public ModuleCanvas(int w, int h) {
         width = w; 
@@ -19,10 +24,25 @@ public class ModuleCanvas extends JPanel {
     }
 
     public void setUpSwingComponents() {
-        bombTimer = new BombTimer(); 
-        add(bombTimer);
+        ss = new SimonSays();
+        add(ss);   
 
-        JPanel redPanel = new JPanel();
+        bombTimer = new BombTimer(); 
+        add(bombTimer);  
+
+        keypad = new Keypad();
+        add(keypad);       
+
+        sm = new SimonSaysManual();
+        add(sm);       
+
+        filler = new Filler();
+        add(filler);
+
+        kp = new KeypadManual();
+        add(kp);
+
+        /*JPanel redPanel = new JPanel();
         redPanel.setBackground(Color.red);
         add(redPanel);
 
@@ -40,17 +60,10 @@ public class ModuleCanvas extends JPanel {
 
         JPanel bluePanel = new JPanel();
         bluePanel.setBackground(Color.blue);
-        add(bluePanel);
+        add(bluePanel);        
         
-        
+        */
 
-        /* testPanel = new JPanel();
-        testPanel.setBackground(Color.pink);
-        add(testPanel);
-
-        JPanel orangePanel = new JPanel();
-        orangePanel.setBackground(Color.orange);
-        add(orangePanel); */
     }
 
     public BombTimer getBombTimer() {

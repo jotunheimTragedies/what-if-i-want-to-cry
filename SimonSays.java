@@ -1,6 +1,4 @@
- 
-
-import java.awt.*;
+ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -10,9 +8,10 @@ import javax.swing.ButtonModel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-public class SimonSays extends JPanel implements ActionListener, ChangeListener {
 
-    public int flashed, ticks, dark, i;
+public class SimonSays extends JPanel implements ActionListener, ChangeListener, ModuleTemplate {
+
+    public int flashed, ticks, dark, i, rounds;
     public int indexPattern;
     public ArrayList<Integer> currentPattern;
 
@@ -65,8 +64,11 @@ public class SimonSays extends JPanel implements ActionListener, ChangeListener 
 			}
 		});
 
+        rounds = 0;
+
         numtimer = new Timer(500, new ActionListener() {
 			public void actionPerformed(ActionEvent e){
+                
                 ticks++;
                 flashed = 0;
                 if(dark >=0){
@@ -80,6 +82,7 @@ public class SimonSays extends JPanel implements ActionListener, ChangeListener 
                             currentPattern.add(flashed);
                             indexPattern = 0;
                             makePattern = false;
+                            rounds++;
 
                         }else{
                             flashed = currentPattern.get(indexPattern);
@@ -93,13 +96,13 @@ public class SimonSays extends JPanel implements ActionListener, ChangeListener 
                     dark = 2;
                 }
                 //next set of if statements are for the flashing
-                if(flashed == 1){
+                if(flashed == 2){
                     red.setIcon(redimage);
                 }else{
                     red.setIcon(reddark);
                 }
         
-                if(flashed == 2){
+                if(flashed == 4){
                     yellow.setIcon(yellowimage);
                         
                     
@@ -108,7 +111,7 @@ public class SimonSays extends JPanel implements ActionListener, ChangeListener 
                         
                 }
         
-                if(flashed == 3){
+                if(flashed == 1){
                     green.setIcon(greenimage);
                         
                 }else{
@@ -116,15 +119,19 @@ public class SimonSays extends JPanel implements ActionListener, ChangeListener 
                     
                 }
         
-                if(flashed == 4){
+                if(flashed == 3){
                     blue.setIcon(blueimage);
                         
                 }else{
                     blue.setIcon(bluedark);
                         
                 }
-        
-                
+
+                if(rounds == 5){
+                    numtimer.stop();
+                    solved(true);
+                }
+           
 				//this method so its a continuous animation
 			}
             
@@ -145,7 +152,7 @@ public class SimonSays extends JPanel implements ActionListener, ChangeListener 
         numtimer.start();
 		timer.start();
         setBackground(Color.GRAY);
-        buttons();
+        setUpSwingComponents();
         backpanel.add(red);
         backpanel.add(blue);
         backpanel.add(green);
@@ -162,7 +169,11 @@ public class SimonSays extends JPanel implements ActionListener, ChangeListener 
 
     }
 
-    public void buttons(){
+    public boolean solved(boolean i){
+        return i;
+    }
+
+    public void setUpSwingComponents(){
 
     red = new JButton(redimage);
     red.addActionListener(new ActionListener(){  
@@ -248,7 +259,6 @@ public class SimonSays extends JPanel implements ActionListener, ChangeListener 
                 green.setIcon(greenimage);
                 if(currentPattern.get(indexPattern) == 3){
                     indexPattern++;
-                
                 }else{
                     SimonStrike = true;
                 }
