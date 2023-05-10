@@ -1,5 +1,3 @@
-
-
 import java.awt.*;
 import java.awt.event.*;
 import java.text.*;
@@ -23,8 +21,8 @@ public class BombTimer extends JPanel implements ModuleTemplate {
     public BombTimer() {
         setBackground(Color.CYAN);
         setLayout(null);
-        //setLayout(new BorderLayout());
-
+        
+        // https://www.youtube.com/watch?v=g-wrebFVP3E
         // https://www.1001fonts.com/ticking-timebomb-bb-font.html
         try {
             InputStream inputStream = getClass().getResourceAsStream("TickingTimebombBB.ttf");
@@ -40,9 +38,9 @@ public class BombTimer extends JPanel implements ModuleTemplate {
         countdownLabel.setForeground(Color.red);
       
         decimalFormat = new DecimalFormat("00");
-        countdownLabel.setText("5:00");
-        minutesLeft = 5; 
-        secondsLeft = 0; 
+        countdownLabel.setText("0:05");
+        minutesLeft = 0; 
+        secondsLeft = 5; 
 
         setUpSwingComponents();
         countdownTimer.start();
@@ -59,7 +57,6 @@ public class BombTimer extends JPanel implements ModuleTemplate {
     //https://www.youtube.com/watch?v=zWw72j-EbqI
         countdownPanel = new JPanel(); 
         countdownPanel.setBackground(Color.black);
-        //countdownPanel.setAlignmentX(30);
         countdownPanel.setBounds(30, 180, 420, 190);
         countdownPanel.setLayout(new BorderLayout());
         countdownPanel.add(countdownLabel, BorderLayout.CENTER);
@@ -82,11 +79,8 @@ public class BombTimer extends JPanel implements ModuleTemplate {
                 
                 if(minutesLeft == 0 && secondsLeft == 0) {
                     countdownTimer.stop();
-
                 }
-
             }
-            
         });
     }
 

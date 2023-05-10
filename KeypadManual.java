@@ -31,6 +31,5 @@ public class KeypadManual extends JPanel{
         backpanel.add(manual);
         
         add(backpanel);
-
     }
 }

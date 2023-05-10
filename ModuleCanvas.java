@@ -6,13 +6,13 @@ public class ModuleCanvas extends JPanel {
     private int width; 
     private int height; 
 
-    private JPanel testPanel;
+    //private JPanel testPanel;
     private BombTimer bombTimer;
-    private SimonSays ss;
-    private Keypad keypad;
-    private KeypadManual kp;
-    private SimonSaysManual sm;
-    private Filler filler;
+    private SimonSays simonModule;
+    private Keypad keypadModule;
+    private KeypadManual keypadManual;
+    private SimonSaysManual simonManual;
+    private Filler fillerModule;
      
     public ModuleCanvas(int w, int h) {
         width = w; 
@@ -24,23 +24,23 @@ public class ModuleCanvas extends JPanel {
     }
 
     public void setUpSwingComponents() {
-        ss = new SimonSays();
-        add(ss);   
+        simonModule = new SimonSays();
+        add(simonModule);   
 
+        fillerModule = new Filler();
+        add(fillerModule);
+
+        keypadModule = new Keypad();
+        add(keypadModule);       
+
+        simonManual = new SimonSaysManual();
+        add(simonManual);      
+        
         bombTimer = new BombTimer(); 
         add(bombTimer);  
 
-        keypad = new Keypad();
-        add(keypad);       
-
-        sm = new SimonSaysManual();
-        add(sm);       
-
-        filler = new Filler();
-        add(filler);
-
-        kp = new KeypadManual();
-        add(kp);
+        keypadManual = new KeypadManual();
+        add(keypadManual);
 
         /*JPanel redPanel = new JPanel();
         redPanel.setBackground(Color.red);

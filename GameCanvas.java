@@ -2,6 +2,9 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.geom.*;
+import java.io.IOException;
+import java.io.InputStream;
+
 import javax.swing.*;
 
 public class GameCanvas extends JComponent implements KeyListener {
@@ -25,6 +28,9 @@ public class GameCanvas extends JComponent implements KeyListener {
     private String backButton = "< Back";
     private boolean backButtonPressed;
 
+    private Font rustHeavy; 
+    private Font cascadia; 
+
     public GameCanvas(int id, int w, int h) {
         width = w; 
         height = h; 
@@ -35,6 +41,17 @@ public class GameCanvas extends JComponent implements KeyListener {
 
         gameState = titleState; 
         backButtonPressed = false; 
+
+        try {
+            InputStream rustStream = getClass().getResourceAsStream("PantonRustHeavy-GrSh.ttf");
+            rustHeavy = Font.createFont(Font.TRUETYPE_FONT, rustStream).deriveFont(100F); 
+
+            InputStream cascadiaStream = getClass().getResourceAsStream("Cascadia.ttf");
+            cascadia = Font.createFont(Font.TRUETYPE_FONT, cascadiaStream).deriveFont(55F);
+        
+        } catch(IOException | FontFormatException ex) {
+
+        }
 
     }
     
@@ -50,13 +67,14 @@ public class GameCanvas extends JComponent implements KeyListener {
         g2d.fill(defaultBackground);
 
         if(gameState == titleState) {
-            g2d.setFont(new Font("Times New Roman", Font.BOLD, 100));
+            g2d.setFont(rustHeavy);
+            //g2d.setFont(new Font("Times New Roman", Font.BOLD, 100));
             g2d.setColor(Color.white);
-            g2d.drawString("Remain Speaking and No", 175, 180);
-            g2d.drawString("Human Being Detonates", 190, 300);
+            g2d.drawString("Remain Speaking and No", 90, 180); // 175, 190
+            g2d.drawString("Human Being Detonates", 100, 300);
 
-            g2d.setFont(new Font("Times New Roman", Font.PLAIN, 55));
-            g2d.drawString("Ateneo CS Edition", 535, 410);
+            g2d.setFont(cascadia);
+            g2d.drawString("Ateneo CS Edition", 505, 410);
 
             for(int i = 0; i < titleOptions.length; i++) {
                 if(i == currentTitleOption) {
@@ -65,7 +83,7 @@ public class GameCanvas extends JComponent implements KeyListener {
                     g2d.setColor(Color.white);
                 }
                     
-                g2d.setFont(new Font("Times New Roman", Font.PLAIN, 50));
+                g2d.setFont(cascadia);
                 g2d.drawString(titleOptions[i], 620, 520 + i*90);
             }
         }

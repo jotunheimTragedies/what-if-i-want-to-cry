@@ -1,5 +1,4 @@
 import javax.swing.*;
-
 import java.awt.GridLayout;
 import java.awt.Image;
 
@@ -9,7 +8,7 @@ public class Filler extends JPanel {
     private JLabel pic;
     public ImageIcon image;
 
-    public Filler(){
+    public Filler() {
         backpanel = new JPanel();
         backpanel.setLayout(new GridLayout(1,1));
 
