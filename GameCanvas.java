@@ -1,10 +1,7 @@
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.*;
 import java.awt.geom.*;
-import java.io.IOException;
-import java.io.InputStream;
-
+import java.io.*;
 import javax.swing.*;
 
 public class GameCanvas extends JComponent implements KeyListener {
@@ -28,7 +25,7 @@ public class GameCanvas extends JComponent implements KeyListener {
     private String backButton = "< Back";
     private boolean backButtonPressed;
 
-    private Font rustHeavy; 
+    private Font topSecret; 
     private Font cascadia; 
 
     public GameCanvas(int id, int w, int h) {
@@ -43,11 +40,11 @@ public class GameCanvas extends JComponent implements KeyListener {
         backButtonPressed = false; 
 
         try {
-            InputStream rustStream = getClass().getResourceAsStream("PantonRustHeavy-GrSh.ttf");
-            rustHeavy = Font.createFont(Font.TRUETYPE_FONT, rustStream).deriveFont(100F); 
+            InputStream secretStream = getClass().getResourceAsStream("Top Secret Stamp.ttf");
+            topSecret = Font.createFont(Font.TRUETYPE_FONT, secretStream).deriveFont(122F); 
 
             InputStream cascadiaStream = getClass().getResourceAsStream("Cascadia.ttf");
-            cascadia = Font.createFont(Font.TRUETYPE_FONT, cascadiaStream).deriveFont(55F);
+            cascadia = Font.createFont(Font.TRUETYPE_FONT, cascadiaStream).deriveFont(50F);
         
         } catch(IOException | FontFormatException ex) {
 
@@ -67,10 +64,9 @@ public class GameCanvas extends JComponent implements KeyListener {
         g2d.fill(defaultBackground);
 
         if(gameState == titleState) {
-            g2d.setFont(rustHeavy);
-            //g2d.setFont(new Font("Times New Roman", Font.BOLD, 100));
+            g2d.setFont(topSecret);
             g2d.setColor(Color.white);
-            g2d.drawString("Remain Speaking and No", 90, 180); // 175, 190
+            g2d.drawString("Remain Speaking and No", 90, 180);
             g2d.drawString("Human Being Detonates", 100, 300);
 
             g2d.setFont(cascadia);
@@ -161,7 +157,6 @@ public class GameCanvas extends JComponent implements KeyListener {
             } else if(getKeyPressed == KeyEvent.VK_ENTER) {
                 if(currentTitleOption == 0) {
                     gameState = runningState; 
-                    //repaint();
                 } else if(currentTitleOption == 1) {
                     gameState = howPlayState;
                     repaint();

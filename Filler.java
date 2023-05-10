@@ -1,6 +1,5 @@
 import javax.swing.*;
-import java.awt.GridLayout;
-import java.awt.Image;
+import java.awt.*;
 
 public class Filler extends JPanel {
     

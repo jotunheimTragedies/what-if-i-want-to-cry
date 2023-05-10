@@ -62,7 +62,6 @@ public class GameFrame {
         Container cp2 = gameFrame.getContentPane();
         cp2.add(moduleCanvas, BorderLayout.CENTER);
 
-        
         cp2.repaint();
         cp2.revalidate();
     }
@@ -77,7 +76,7 @@ public class GameFrame {
             if(zeroMinutes == 0 && zeroSeconds == 0) {
                 gameCanvas.gameState = gameCanvas.gameOverState;
                 int currentCanvasState = gameCanvas.getCurrentState();
-                System.out.println(currentCanvasState);
+                //System.out.println(currentCanvasState);
                 gameFrame.getContentPane().removeAll();
                 gameFrame.repaint();
                 gameFrame.revalidate();
@@ -85,10 +84,7 @@ public class GameFrame {
    
             }
         }
-        setUpOverCanvas();
-        //setUpRunningCanvas();
-
-  
+        setUpOverCanvas();  
     }
 
     public void setUpOverCanvas() {

@@ -1,8 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import java.text.*;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import javax.swing.*;
 
 public class BombTimer extends JPanel implements ModuleTemplate {
@@ -53,8 +52,8 @@ public class BombTimer extends JPanel implements ModuleTemplate {
     @Override
     public void setUpSwingComponents() {
         
-    //https://stackoverflow.com/questions/12119327/placing-a-jlabel-at-a-specific-x-y-coordinate-on-a-jpanel
-    //https://www.youtube.com/watch?v=zWw72j-EbqI
+    // https://stackoverflow.com/questions/12119327/placing-a-jlabel-at-a-specific-x-y-coordinate-on-a-jpanel
+    // https://www.youtube.com/watch?v=zWw72j-EbqI
         countdownPanel = new JPanel(); 
         countdownPanel.setBackground(Color.black);
         countdownPanel.setBounds(30, 180, 420, 190);

@@ -1,8 +1,5 @@
 
-import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.Image;
-
+import java.awt.*;
 import javax.swing.*;
 
 public class KeypadManual extends JPanel{

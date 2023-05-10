@@ -1,16 +1,13 @@
 import java.awt.*;
 import javax.swing.*;
 import java.awt.geom.*;
-import java.io.DataInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.awt.event.*;;
+import java.io.*;
 
 public class OverCanvas extends JComponent {
     private int width; 
     private int height; 
-    private GameCanvas gameCanvas;
-    private Font rustHeavy; 
+    //private GameCanvas gameCanvas;
+    private Font topSecret; 
     private Font cascadia; 
 
     public OverCanvas(int w, int h) {
@@ -19,8 +16,8 @@ public class OverCanvas extends JComponent {
         setPreferredSize(new Dimension(width, height));
 
         try {
-            InputStream overStream = getClass().getResourceAsStream("PantonRustHeavy-GrSh.ttf");
-            rustHeavy = Font.createFont(Font.TRUETYPE_FONT, overStream).deriveFont(170F);
+            InputStream secretStream = getClass().getResourceAsStream("Top Secret Stamp.ttf");
+            topSecret = Font.createFont(Font.TRUETYPE_FONT, secretStream).deriveFont(170F);
 
             InputStream luckStream = getClass().getResourceAsStream("Cascadia.ttf");
             cascadia = Font.createFont(Font.TRUETYPE_FONT, luckStream).deriveFont(55F);
@@ -28,7 +25,6 @@ public class OverCanvas extends JComponent {
         } catch(IOException | FontFormatException ex) {
 
         }
-        
     }
 
     @Override
@@ -42,15 +38,14 @@ public class OverCanvas extends JComponent {
         g2d.setPaint(Color.red);
         g2d.fill(defaultBackground);
 
-        g2d.setFont(rustHeavy);
+        g2d.setFont(topSecret);
         g2d.setColor(Color.white);
-        g2d.drawString("Game Over!", 240, 330);
+        g2d.drawString("Game Over!", 330, 330);
 
         g2d.setFont(cascadia);
         g2d.setColor(Color.white);
         g2d.drawString("Better luck next time.", 410, 450);
 
-        
     }
 }
 
