@@ -29,6 +29,7 @@ public class GameCanvas extends JComponent implements KeyListener {
     private Font cascadia; 
 
     public GameCanvas(int id, int w, int h) {
+        playerID = id; 
         width = w; 
         height = h; 
         setPreferredSize(new Dimension(w, h));
@@ -121,11 +122,15 @@ public class GameCanvas extends JComponent implements KeyListener {
         }
 
     }
- 
-    public int getCurrentState() {
+    
+    public int getCurrentGameState() {
         return gameState;
     }
 
+
+    public void setGameState(int n) {
+        gameState = n; 
+    }
 // https://www.youtube.com/watch?v=BJ7fr9XwS2o
 // https://www.youtube.com/watch?v=2ibxoX0E6AY
     @Override

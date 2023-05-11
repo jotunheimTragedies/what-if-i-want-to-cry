@@ -41,7 +41,7 @@ public class GameFrame {
 
     public void changetoRunningState() {
         while(true) {
-            int currentCanvasState = gameCanvas.getCurrentState();
+            int currentCanvasState = gameCanvas.getCurrentGameState();
 
             if(currentCanvasState == gameCanvas.titleState) {
                 System.out.println();
@@ -75,7 +75,7 @@ public class GameFrame {
 
             if(zeroMinutes == 0 && zeroSeconds == 0) {
                 gameCanvas.gameState = gameCanvas.gameOverState;
-                int currentCanvasState = gameCanvas.getCurrentState();
+                int currentCanvasState = gameCanvas.getCurrentGameState();
                 //System.out.println(currentCanvasState);
                 gameFrame.getContentPane().removeAll();
                 gameFrame.repaint();

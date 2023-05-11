@@ -37,9 +37,9 @@ public class BombTimer extends JPanel implements ModuleTemplate {
         countdownLabel.setForeground(Color.red);
       
         decimalFormat = new DecimalFormat("00");
-        countdownLabel.setText("0:05");
-        minutesLeft = 0; 
-        secondsLeft = 5; 
+        countdownLabel.setText("2:30");
+        minutesLeft = 2; 
+        secondsLeft = 30; 
 
         setUpSwingComponents();
         countdownTimer.start();
