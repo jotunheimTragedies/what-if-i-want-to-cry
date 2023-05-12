@@ -44,7 +44,7 @@ public class GameFrame {
             int currentCanvasState = gameCanvas.getCurrentGameState();
 
             if(currentCanvasState == gameCanvas.titleState) {
-                System.out.println();
+                //System.out.println();
             }
 
             if(currentCanvasState == gameCanvas.runningState) {

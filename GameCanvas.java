@@ -128,7 +128,7 @@ public class GameCanvas extends JComponent implements KeyListener {
     }
 
 
-    public void setGameState(int n) {
+    public void setGameState(int n ) {
         gameState = n; 
     }
 // https://www.youtube.com/watch?v=BJ7fr9XwS2o

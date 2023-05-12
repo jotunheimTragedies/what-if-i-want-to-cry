@@ -28,9 +28,9 @@ public class GameServer {
 
         gc = new GameCanvas(numPlayers, 0, 0);
 
-        p1GameState = gc.getCurrentGameState(); // gameCanvas.titleState; 
+        p1GameState = gc.titleState; //gc.getCurrentGameState(); // gameCanvas.titleState; 
         System.out.println("Player One is in GameState " + p1GameState);
-        p2GameState = gc.getCurrentGameState(); 
+        p2GameState = gc.titleState; 
         System.out.println("Player Two is in GameState " + p1GameState);
 
         try {
@@ -68,6 +68,7 @@ public class GameServer {
                     p2Socket = s; 
                     p2ReadRunnable = rfc; 
                     p2WriteRunnable = wtc; 
+
                     p1WriteRunnable.sendStartMessage();
                     p2WriteRunnable.sendStartMessage();
                     
@@ -153,7 +154,7 @@ public class GameServer {
                 while(true) {
                     if(playerID == 1) {
                         p1GameState = dataIn.readInt();
-                        
+
                     } else {
                         p2GameState = dataIn.readInt();
                     }
@@ -177,14 +178,17 @@ public class GameServer {
 
         @Override
         public void run() {
-            try {
+            try { 
                 while(true) {
                     if(playerID == 1) {
                         dataOut.writeInt(p2GameState);
+                        System.out.println("Player Two is in GameState " + p2GameState);
                         dataOut.flush();
                     
                     } else {
                         dataOut.writeInt(p1GameState);
+                        System.out.println("Player One is in GameState " + p1GameState);
+                        dataOut.flush();
                     }
 
                     try {
